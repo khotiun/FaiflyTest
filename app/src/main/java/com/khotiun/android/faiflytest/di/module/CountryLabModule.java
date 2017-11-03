@@ -1,16 +1,20 @@
 package com.khotiun.android.faiflytest.di.module;
 
-import dagger.Module;
+import android.content.Context;
 
-/**
- * Created by hotun on 23.10.2017.
- */
+import com.khotiun.android.faiflytest.model.CountryLab;
+
+import javax.inject.Singleton;
+
+import dagger.Module;
+import dagger.Provides;
+
 @Module
 public class CountryLabModule {
 
-//    @Singleton
-//    @Provides
-//    public CountryLab provideCountryLab(Context context) {
-//        return new CountryLab(context);
-//    }
+    @Singleton
+    @Provides
+    public CountryLab provideCountryLab(Context context) {
+        return new CountryLab(context);
+    }
 }

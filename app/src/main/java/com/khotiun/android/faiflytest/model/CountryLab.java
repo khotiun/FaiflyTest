@@ -36,8 +36,7 @@ public class CountryLab implements IModelCountry {
         }
         return sCountryLab;
     }
-
-    private CountryLab(Context context) {
+    public CountryLab(Context context) {
         mContext = context.getApplicationContext();
         mDatabase = new CountryBaseHelper(mContext).getWritableDatabase();//get bd for write
     }

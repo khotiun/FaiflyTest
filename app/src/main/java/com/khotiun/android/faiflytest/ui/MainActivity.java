@@ -20,7 +20,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.khotiun.android.faiflytest.R;
-import com.khotiun.android.faiflytest.model.CountryLab;
 import com.khotiun.android.faiflytest.model.pojo.Example;
 import com.khotiun.android.faiflytest.presenter.IPresenterCountry;
 import com.khotiun.android.faiflytest.presenter.PresenterCountry;
@@ -54,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements IViewCountry {
         setSupportActionBar(mToolbar);
 
         if (mPresenter == null) {
-            mPresenter = new PresenterCountry(this, CountryLab.getCountryLab(this));
+            mPresenter = new PresenterCountry(this);
         }
 
         if (isDatabaseEmpty()){
