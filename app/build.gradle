@@ -52,4 +52,6 @@ dependencies {
     annotationProcessor 'com.google.dagger:dagger-compiler:2.9'
     //JavaPoetявляется Java API для генерации .javaисходных файлов.
     compile 'com.squareup:javapoet:1.9.0'
+    //for google map
+    compile 'com.google.android.gms:play-services-maps:10.2.1'
 }

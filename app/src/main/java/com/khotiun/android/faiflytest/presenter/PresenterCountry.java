@@ -5,7 +5,7 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.khotiun.android.faiflytest.MyApplication;
 import com.khotiun.android.faiflytest.model.Country;
-import com.khotiun.android.faiflytest.model.CountryLab;
+import com.khotiun.android.faiflytest.model.ModelCountryLab;
 import com.khotiun.android.faiflytest.view.IViewCountry;
 
 import java.util.List;
@@ -19,10 +19,8 @@ import rx.schedulers.Schedulers;
 
 public class PresenterCountry implements IPresenterCountry {
 
-//    @Inject
-//    IModelCountry model;
     @Inject
-    CountryLab mCountryLab;
+    ModelCountryLab mCountryLab;
 
 
     private static final String TAG = "PresenterCountry";
@@ -40,7 +38,7 @@ public class PresenterCountry implements IPresenterCountry {
     @Override
     public void getCountries() {
         Log.d(TAG, "getCountries()");
-        mCountryLab.getCountries(new CountryLab.LoadCountriesCallback() {
+        mCountryLab.getCountries(new ModelCountryLab.LoadCountriesCallback() {
             @Override
             public void onLoad(List<String> countries) {
                 view.setDataToSpiner(countries);
@@ -50,7 +48,7 @@ public class PresenterCountry implements IPresenterCountry {
 
     @Override
     public void getCities(String country) {
-        mCountryLab.getCities(new CountryLab.LoadCitiesCallback() {
+        mCountryLab.getCities(new ModelCountryLab.LoadCitiesCallback() {
             @Override
             public void onLoadCities(List<String> cities) {
                 view.showListCities(cities);

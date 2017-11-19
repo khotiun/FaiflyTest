@@ -23,20 +23,20 @@ import rx.Observable;
 import static com.khotiun.android.faiflytest.database.CountryDbSchema.CountryTable;
 
 //singleton
-public class CountryLab implements IModelCountry {
+public class ModelCountryLab implements IModelCountry {
 
-    private static CountryLab sCountryLab;
+    private static ModelCountryLab sCountryLab;
     private Context mContext;
     private SQLiteDatabase mDatabase;
 
     // there can be only one object of this class
-    public static CountryLab getCountryLab(Context context) {
+    public static ModelCountryLab getCountryLab(Context context) {
         if (sCountryLab == null) {
-            sCountryLab = new CountryLab(context);
+            sCountryLab = new ModelCountryLab(context);
         }
         return sCountryLab;
     }
-    public CountryLab(Context context) {
+    public ModelCountryLab(Context context) {
         mContext = context.getApplicationContext();
         mDatabase = new CountryBaseHelper(mContext).getWritableDatabase();//get bd for write
     }

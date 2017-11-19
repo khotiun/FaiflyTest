@@ -7,8 +7,8 @@ import rx.Observable;
 public interface IModelCountry {
 
     void addCountry(Country c);
-    void getCountries(CountryLab.LoadCountriesCallback callback);
-    void getCities(CountryLab.LoadCitiesCallback callback, String country);
+    void getCountries(ModelCountryLab.LoadCountriesCallback callback);
+    void getCities(ModelCountryLab.LoadCitiesCallback callback, String country);
     Observable<JsonObject> getJson();
 
 }

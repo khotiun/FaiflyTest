@@ -1,5 +1,6 @@
 package com.khotiun.android.faiflytest.ui;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -7,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,24 +20,18 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.khotiun.android.faiflytest.R;
-import com.khotiun.android.faiflytest.model.pojo.Example;
 import com.khotiun.android.faiflytest.presenter.IPresenterCountry;
 import com.khotiun.android.faiflytest.presenter.PresenterCountry;
-import com.khotiun.android.faiflytest.rest.RestCity;
 import com.khotiun.android.faiflytest.tools.Config;
 import com.khotiun.android.faiflytest.view.IViewCountry;
 
 import java.util.List;
 
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
-
 public class MainActivity extends AppCompatActivity implements IViewCountry {
 
     private static final String TAG = "MainActivity";
 
-    IPresenterCountry mPresenter;
+    private IPresenterCountry mPresenter;
     private ProgressBar mProgressBar;
     private Spinner mSpinner;
     private RecyclerView mRecyclerView;
@@ -56,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements IViewCountry {
             mPresenter = new PresenterCountry(this);
         }
 
-        if (isDatabaseEmpty()){
+        if (isDatabaseEmpty()) {
             showProgressBar();
             mPresenter.saveDataToDb();
             dbIsFull();
@@ -167,23 +161,20 @@ public class MainActivity extends AppCompatActivity implements IViewCountry {
 
         @Override
         public void onClick(View v) {
-
-            RestCity.getApiService().getCity(cityName, 1, Config.userName)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Action1<Example>() {
-                                   @Override
-                                   public void call(Example example) {
-                                       Log.d(TAG, "subscribe " + example.getGeonames().get(0).getTitle());
-                                       Log.d(TAG, example.getGeonames().get(0).getTitle());
-                                   }
-                               },
-                            new Action1<Throwable>() {
-                                @Override
-                                public void call(Throwable e) {
-                                    Log.d(TAG, e.getMessage());
-                                }
-                            });
+        Intent i = DetailCityActivity.detailIntent(MainActivity.this, cityName);
+        startActivity(i);
+//
+//            RestCity.getApiService().getCity(cityName, 1, Config.userName)
+//                    .subscribeOn(Schedulers.io())
+//                    .observeOn(AndroidSchedulers.mainThread())
+//                    .subscribe(example -> {
+//                                Log.d(TAG, "subscribe " + example.getGeonames().get(0).getTitle());
+//                                Log.d(TAG, "subscribe " + example.getGeonames().get(0).getLat());
+//                                Log.d(TAG, "subscribe " + example.getGeonames().get(0).getLng());
+//                                Log.d(TAG, "subscribe " + example.getGeonames().get(0).getSummary());
+//                                Log.d(TAG, "subscribe " + example.getGeonames().get(0).getFeature());
+//                            },
+//                            e -> Log.d(TAG, e.getMessage()));
         }
     }
 

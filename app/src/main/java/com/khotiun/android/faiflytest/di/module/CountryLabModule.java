@@ -2,7 +2,7 @@ package com.khotiun.android.faiflytest.di.module;
 
 import android.content.Context;
 
-import com.khotiun.android.faiflytest.model.CountryLab;
+import com.khotiun.android.faiflytest.model.ModelCountryLab;
 
 import javax.inject.Singleton;
 
@@ -14,7 +14,7 @@ public class CountryLabModule {
 
     @Singleton
     @Provides
-    public CountryLab provideCountryLab(Context context) {
-        return new CountryLab(context);
+    public ModelCountryLab provideCountryLab(Context context) {
+        return new ModelCountryLab(context);
     }
 }
